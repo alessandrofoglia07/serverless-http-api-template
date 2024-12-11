@@ -1,0 +1,31 @@
+service: serverless-http-api
+frameworkVersion: '4'
+
+provider:
+    name: aws
+    runtime: nodejs20.x
+    region: us-west-1
+    httpApi:
+        cors:
+            allowedOrigins:
+                - ${env:CLIENT_URL}
+            allowCredentials: true
+    environment:
+        SERVERLESS_AWS_REGION:
+            Ref: AWS::Region
+        CORS_ORIGIN: ${self:custom.corsOrigin}
+        CLIENT_URL: ${env:CLIENT_URL}
+
+package:
+    individually: true
+    patterns:
+        - '!node_modules/*'
+
+functions: ${file(./serverless-functions.yml)}
+
+plugins:
+    - serverless-iam-roles-per-function
+
+custom:
+    corsOrigin: ${env:CLIENT_URL}
+    dynamodbTableUrl: "arn:aws:dynamodb:${opt:region, self:provider.region}:${aws:accountId, '*'}:table"

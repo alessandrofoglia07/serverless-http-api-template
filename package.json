@@ -1,0 +1,28 @@
+{
+    "name": "serverless-http-api",
+    "version": "1.0.0",
+    "description": "Serverless HTTP API",
+    "scripts": {
+        "lint": "eslint . --ext .ts",
+        "lint:fix": "eslint . --ext .ts --fix",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "dev": "serverless dev",
+        "deploy": "serverless deploy",
+        "build": "serverless package"
+    },
+    "author": "alessandrofoglia07",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/aws-lambda": "^8.10.146",
+        "@types/eslint": "^9.6.1",
+        "@types/node": "^22.10.2",
+        "@typescript-eslint/eslint-plugin": "^8.18.0",
+        "@typescript-eslint/parser": "^8.18.0",
+        "eslint": "^9.16.0",
+        "nodemon": "^3.1.7",
+        "prettier": "^3.4.2",
+        "serverless-iam-roles-per-function": "^3.2.0",
+        "typescript": "^5.7.2"
+    }
+}
